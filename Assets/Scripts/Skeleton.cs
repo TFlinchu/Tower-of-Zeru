@@ -5,13 +5,19 @@ using UnityEngine;
 public class Skeleton : MonoBehaviour
 {
     public Transform target;
-    public float speed = 2f;
     public Rigidbody2D rb;
-    private bool isStopping = false;
+    public Animator animator;
+    private bool isStopped = true;
+    public float speed = 2f;
+    public float hp = 100f;
+    private Coroutine attackCoroutine;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Get the Animator component on the child GameObject
+        animator = GetComponentInChildren<Animator>();
 
         // lock rotation
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -23,13 +29,14 @@ public class Skeleton : MonoBehaviour
         if (!target)
         {
             FindTarget();
+            animator.SetBool("isMoving", true);
         }
     }
 
     private void FixedUpdate()
     {
         // Move towards target
-        if (target && !isStopping)
+        if (target && !isStopped)
         {
             Vector2 direction = ((Vector2)target.position - rb.position).normalized;
             Vector2 newPosition = rb.position + direction * speed * Time.fixedDeltaTime;
@@ -52,9 +59,10 @@ public class Skeleton : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // start stopping
-            Debug.Log("Player entered trigger area");
-            isStopping = true;
+            isStopped = true;
+            animator.SetBool("isMoving", false);
+            // Start the attack coroutine when the player enters the range
+            attackCoroutine = StartCoroutine(AttackRepeatedly());
         }
     }
 
@@ -63,10 +71,35 @@ public class Skeleton : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // stop stopping
-            Debug.Log("Player left trigger area");
-            isStopping = false;
+            // Stop the attack coroutine when the player leaves the range
+            isStopped = false;
         }
+    }
+
+    // Attack repeatedly
+    private IEnumerator AttackRepeatedly()
+    {
+        // Delay between attacks
+        float attackDelay = 1f;
+        isStopped = true;
+
+        while (isStopped)
+        {
+            // Disable movement
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            animator.SetTrigger("Attack");
+
+            // Wait for the attack animation to finish
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+            // Re-enable movement
+            rb.constraints =
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            yield return new WaitForSeconds(attackDelay);
+        }
+        animator.SetBool("isMoving", true);
     }
 
     // collides with body
@@ -75,20 +108,45 @@ public class Skeleton : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // damage player
-            Debug.Log("player touched enemy");
+
+            // testing
+            TakeDamage(25);
         }
     }
 
     private void FindTarget()
     {
-        // Find the target
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        Debug.Log(target);
-    }
-    private IEnumerator StopAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        isStopping = true;
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            // Find the target
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            if (target)
+            {
+                isStopped = false;
+            }
+        }
     }
 
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        animator.SetTrigger("Die");
+
+        // Disable all components except for the Renderer
+        foreach (var component in GetComponents<Component>())
+        {
+            if (!(component is Renderer))
+            {
+                if (component is Behaviour behaviour) behaviour.enabled = false;
+            }
+        }
+    }
 }
