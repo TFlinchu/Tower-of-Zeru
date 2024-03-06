@@ -136,6 +136,16 @@ public class Skeleton : MonoBehaviour
         }
     }
 
+    public void enableHurtbox()
+    {
+        // Enable the Collider2D component on the hurtbox
+        hurtbox.GetComponent<Collider2D>().enabled = true;
+    }
+    public void disableHurtbox()
+    {
+        hurtbox.GetComponent<Collider2D>().enabled = false;
+    }
+
     private void Die()
     {
         animator.SetTrigger("Die");
