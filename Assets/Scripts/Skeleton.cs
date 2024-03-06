@@ -12,6 +12,7 @@ public class Skeleton : MonoBehaviour
     public float hp = 100f;
     private Coroutine attackCoroutine;
     public GameObject hurtbox;
+    private bool isAttacking = false;
 
     private void Start()
     {
@@ -37,7 +38,7 @@ public class Skeleton : MonoBehaviour
     private void FixedUpdate()
     {
         // Move towards target
-        if (target && !isStopped)
+        if (target && !isStopped && !isAttacking)
         {
             Vector2 direction = ((Vector2)target.position - rb.position).normalized;
             Vector2 newPosition = rb.position + direction * speed * Time.fixedDeltaTime;
@@ -86,6 +87,7 @@ public class Skeleton : MonoBehaviour
 
         while (isStopped)
         {
+            isAttacking = true;
             // Disable movement
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -100,6 +102,7 @@ public class Skeleton : MonoBehaviour
             yield return new WaitForSeconds(attackDelay);
         }
         animator.SetBool("isMoving", true);
+        isAttacking = false;
     }
 
     // collides with body
@@ -108,8 +111,9 @@ public class Skeleton : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             // damage player
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(10);
 
-            // testing
+            // Testing
             TakeDamage(25);
         }
     }
