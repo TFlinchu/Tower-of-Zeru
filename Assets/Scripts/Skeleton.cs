@@ -7,10 +7,11 @@ public class Skeleton : MonoBehaviour
     public Transform target;
     public Rigidbody2D rb;
     public Animator animator;
-    private bool isStopped = true;
+    private bool isStopped = false;
     public float speed = 2f;
     public float hp = 100f;
     private Coroutine attackCoroutine;
+    public GameObject hurtbox;
 
     private void Start()
     {
@@ -94,7 +95,6 @@ public class Skeleton : MonoBehaviour
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
             // Re-enable movement
-            rb.constraints =
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             yield return new WaitForSeconds(attackDelay);
@@ -143,7 +143,7 @@ public class Skeleton : MonoBehaviour
         // Disable all components except for the Renderer
         foreach (var component in GetComponents<Component>())
         {
-            if (!(component is Renderer))
+            if (!(component is Renderer) && !(component is Animator))
             {
                 if (component is Behaviour behaviour) behaviour.enabled = false;
             }
