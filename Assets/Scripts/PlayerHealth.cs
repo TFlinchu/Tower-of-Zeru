@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public Rigidbody2D rb;
+    [SerializeField] private Healthbar healthbar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount) 
     {
         currentHealth -= amount;
+        healthbar.SetHealth(currentHealth);
         if (currentHealth <= 0) 
         {
             Die();
@@ -31,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > maxHealth) 
         {
             currentHealth = maxHealth;
+            healthbar.SetHealth(currentHealth);
         }
     }
 
