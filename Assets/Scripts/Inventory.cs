@@ -41,6 +41,8 @@ public class Inventory : MonoBehaviour
     {
         items.Remove(item);
         // drop item
+
+        onItemChangedCallback?.Invoke();
     }
 
 }

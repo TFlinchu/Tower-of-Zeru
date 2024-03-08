@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fb8179d12600e44c8e15cdf0ffd06b2, type: 3}
-  m_Name: Test spell
+  m_Name: Modifier Spell
   m_EditorClassIdentifier: 
   itemName: item
-  icon: {fileID: 0}
+  icon: {fileID: -344986906, guid: 2521eed80436b394b9b06738715f7242, type: 3}
