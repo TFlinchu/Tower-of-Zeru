@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: MagicType_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21.333332
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 930d110c6ee8e51498cc53bf24eace03
+      internalID: -1770680172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 21.333332
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c384d186b59c74479fc51dd3e2400ef
+      internalID: 343078035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 21.333332
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ae0ef46235f64e4da9a4993905455a7
+      internalID: 736141018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 21.333332
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d5e50dabb2926488b554f6c0421bb7
+      internalID: -499978585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ac2c8d49fa77f4aa18d06c181563cd
+      internalID: 1540131147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 11.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb6f9e90fa65634cb24fa1e3c18b270
+      internalID: -1860343846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 11.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaa77cddf1008d4498b4448545f9ff61
+      internalID: -1457933564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 11.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f4c89ca3e725f4492e94ef56bbb4f6
+      internalID: 2081536292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f012fa8ce6d01e4d91e46ab2e1c1d66
+      internalID: -1735911009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2273ce26054284e9d47cc15592615c
+      internalID: -544543830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07c705c7266ffa04589d7c9ef1d6c5e9
+      internalID: 780503292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicType_11
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1.333333
+        width: 8
+        height: 10.666667
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa34e8a7534c17f459d178036e46f978
+      internalID: 2105819177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +371,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MagicType_0: -1770680172
+      MagicType_1: 343078035
+      MagicType_10: 780503292
+      MagicType_11: 2105819177
+      MagicType_2: 736141018
+      MagicType_3: -499978585
+      MagicType_4: 1540131147
+      MagicType_5: -1860343846
+      MagicType_6: -1457933564
+      MagicType_7: 2081536292
+      MagicType_8: -1735911009
+      MagicType_9: -544543830
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
