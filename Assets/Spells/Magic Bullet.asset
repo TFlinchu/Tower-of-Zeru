@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fb8179d12600e44c8e15cdf0ffd06b2, type: 3}
-  m_Name: Test spell
+  m_Name: Magic Bullet
   m_EditorClassIdentifier: 
-  itemName: item
-  icon: {fileID: 0}
+  itemName: Magic Bullet
+  icon: {fileID: -1855579864, guid: 2521eed80436b394b9b06738715f7242, type: 3}
+  itemPrefab: {fileID: 7315941594754614380, guid: 9792d66001ea0064bbc6b93fa7423944, type: 3}
