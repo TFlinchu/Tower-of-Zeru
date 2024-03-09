@@ -18,31 +18,39 @@ public class Inventory : MonoBehaviour
 
     // basic inventory space
     public int space = 10;
-    public List<Item> items = new List<Item>();
+    public Item[] items; // Changed from List<Item> to Item[]
 
+    void Start()
+    {
+        items = new Item[space]; // Initialize the array with the size of the inventory space
+    }
 
     // adds an item (only spells for now) to your inventory
     public bool AddItem(Item item)
     {
-        // inventory is full
-        if (items.Count >= space)
+        // Find the first empty slot
+        for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("Not enough room.");
-            return false;
+            if (items[i] == null)
+            {
+                items[i] = item;
+                // checks if there is a callback, then invokes it
+                onItemChangedCallback?.Invoke();
+                return true;
+            }
         }
-        // inventory has room
-        items.Add(item);
-        // checks if there is a callback, then invokes it
-        onItemChangedCallback?.Invoke();
-        return true;
+
+        // If we reach here, it means the inventory is full
+        Debug.Log("Not enough room.");
+        return false;
     }
 
     // removes an item from your inventory
-    public Item RemoveItem(Item item)
+    public Item RemoveItem(int index) // Modify this line
     {
-        items.Remove(item);
+        Item item = items[index];
+        items[index] = null;
         onItemChangedCallback?.Invoke();
         return item;
     }
-
 }
