@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -14,6 +15,11 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].setIndex(i);
+        }
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Length && inventory.items[i] != null)
             {
-                slots[i].AddItem(inventory.items[i], i); // Modify this line
+                slots[i].AddItem(inventory.items[i]);
             }
             else
             {

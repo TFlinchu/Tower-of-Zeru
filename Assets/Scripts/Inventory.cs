@@ -19,6 +19,8 @@ public class Inventory : MonoBehaviour
     // basic inventory space
     public int space = 10;
     public Item[] items; // Changed from List<Item> to Item[]
+    public Item itemBeingMoved;
+    public int itemBeingMovedIndex;
 
     void Start()
     {
@@ -51,6 +53,50 @@ public class Inventory : MonoBehaviour
         Item item = items[index];
         items[index] = null;
         onItemChangedCallback?.Invoke();
+        itemBeingMoved = null;
+        itemBeingMovedIndex = -1;
+
         return item;
+    }
+
+    public void MoveItem(int index)
+    {
+        if (itemBeingMoved == null)
+        {
+            if (items[index] == null)
+            {
+                Debug.Log("No item to move");
+                return;
+            }
+            // Set the item being moved
+            Debug.Log("Item to move: " + items[index].itemName);
+            itemBeingMoved = items[index];
+            itemBeingMovedIndex = index;
+        }
+        else
+        {
+            if (items[index] == null)
+            {
+                items[index] = itemBeingMoved;
+                Debug.Log("Swapped with " + items[itemBeingMovedIndex].itemName);
+                items[itemBeingMovedIndex] = null;
+            }
+            else
+            {
+                // Swap the items
+                Item temp = items[index];
+                items[index] = itemBeingMoved;
+                items[itemBeingMovedIndex] = temp;
+                Debug.Log("Swapped " + items[index].itemName + " with " + items[itemBeingMovedIndex].itemName);
+            }
+
+            // Clear the item being moved
+            itemBeingMoved = null;
+            itemBeingMovedIndex = 9;
+            Debug.Log("Item moved");
+
+            // Update the UI
+            onItemChangedCallback?.Invoke();
+        }
     }
 }
