@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -5,12 +6,31 @@ public class ItemPickup : MonoBehaviour
     // reference to the item scriptable object
     public Item item;
 
-    // pick up
-    public void OnTriggerEnter2D(Collider2D other)
+    private bool isPlayerinTrigger = false;
+
+
+public void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.gameObject.tag == "Player")
     {
-        if (other.gameObject.tag == "Player")
+        isPlayerinTrigger = true;
+        UIManager.instance.ShowPickupText(item.itemName);
+    }
+}
+
+public void OnTriggerExit2D(Collider2D other)
+{
+    if (other.gameObject.tag == "Player")
+    {
+        isPlayerinTrigger = false;
+        UIManager.instance.HidePickupText();
+    }
+}
+
+    void Update()
+    {
+        if (isPlayerinTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Picked up " + item.name + "!");
             PickUp();
         }
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public int space = 10;
     public List<Item> items = new List<Item>();
 
+
     // adds an item (only spells for now) to your inventory
     public bool AddItem(Item item)
     {
@@ -37,12 +38,11 @@ public class Inventory : MonoBehaviour
     }
 
     // removes an item from your inventory
-    public void RemoveItem(Item item)
+    public Item RemoveItem(Item item)
     {
         items.Remove(item);
-        // drop item
-
         onItemChangedCallback?.Invoke();
+        return item;
     }
 
 }

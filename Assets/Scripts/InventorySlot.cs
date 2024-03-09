@@ -5,36 +5,44 @@ public class InventorySlot : MonoBehaviour
 {
 
     public Image icon;
-    public Button DropButton; 
+    public Button DropButton;
+    private GameObject player;
 
     Item item;
 
-    public void AddItem(Item newItem) 
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void AddItem(Item newItem)
     {
         item = newItem;
-        
+
         icon.sprite = item.icon;
         icon.enabled = true;
         DropButton.interactable = true;
 
     }
 
-    public void ClearSlot() 
+    public void ClearSlot()
     {
         item = null;
-        
+
         icon.sprite = null;
         icon.enabled = false;
         DropButton.interactable = false;
     }
 
-    public void OnDropButton() 
+    public void OnDropButton()
     {
-        Debug.Log("Dropping " + item.name);
-        Inventory.instance.RemoveItem(item);
+        Item droppedItem = Inventory.instance.RemoveItem(item);
+        Vector3 dropPosition = player.transform.position + player.transform.forward;
+        Instantiate(droppedItem.itemPrefab, dropPosition, Quaternion.identity);
     }
 
-    public void moveItem() {
+    public void moveItem()
+    {
         Debug.Log("Moving " + item.name);
     }
 }

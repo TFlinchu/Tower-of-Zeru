@@ -8,37 +8,48 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public Rigidbody2D rb;
-    [SerializeField] private Healthbar healthbar;
+    private Healthbar healthbar;
 
     // Start is called before the first frame update
     void Start()
     {
-        // rb.GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        // TakeDamage(100);
+        GameObject healthBarFillingObject = GameObject.Find("Canvas/Healthbar/HealthBar Filling");
+        if (healthBarFillingObject != null)
+        {
+            healthbar = healthBarFillingObject.GetComponent<Healthbar>();
+            if (healthbar == null)
+            {
+                Debug.LogError("Healthbar component not found in the HealthBar Filling object.");
+            }
+        }
+        else
+        {
+            Debug.LogError("HealthBar Filling object not found in the scene.");
+        }
     }
 
-    public void TakeDamage(int amount) 
+    public void TakeDamage(int amount)
     {
         currentHealth -= amount;
         healthbar.SetHealth(currentHealth);
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    public void Heal(int amount) 
+    public void Heal(int amount)
     {
         currentHealth += amount;
-        if (currentHealth > maxHealth) 
+        if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
             healthbar.SetHealth(currentHealth);
         }
     }
 
-    public void Die() 
+    public void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("Death");
@@ -46,6 +57,6 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
