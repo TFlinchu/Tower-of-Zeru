@@ -13,7 +13,8 @@ public class Wand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
             return;
         }
         if (Input.GetMouseButton(0) && canAttack)
@@ -33,6 +34,16 @@ public class Wand : MonoBehaviour
     private IEnumerator Shoot()
     {
         attackCooldown();
+
+        // Get the item in the first slot of the inventory
+        Item item = WandInventory.instance.GetItem(0);
+        if (item == null)
+        {
+            Debug.Log("No item in the first slot.");
+            yield break;
+        }
+
+        Debug.Log("Shooting " + item.name);
 
         // setting shoot direction
         Vector3 shootDirection;
