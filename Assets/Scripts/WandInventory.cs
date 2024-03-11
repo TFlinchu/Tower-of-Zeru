@@ -2,10 +2,10 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class WandInventory : MonoBehaviour
 {
     // singleton pattern, to be called from other scripts
-    public static Inventory instance;
+    public static WandInventory instance;
 
     void Awake()
     {
@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     // basic inventory space
-    public int space = 10;
+    public int space = 6;
     public Item[] items; // Changed from List<Item> to Item[]
     public Item itemBeingMoved;
     public int itemBeingMovedIndex;
@@ -102,7 +102,7 @@ public class Inventory : MonoBehaviour
 
     // public void MoveItemToOtherInventory(int index)
     // {
-    //     WandInventory.instance.AddItem(RemoveItem(index));
+    //     Inventory.instance.AddItem(RemoveItem(index));
     // }
 
     public Item GetItem(int index)

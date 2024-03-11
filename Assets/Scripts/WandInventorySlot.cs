@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class WandInventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button DropButton;
@@ -41,23 +41,23 @@ public class InventorySlot : MonoBehaviour
 
     public void OnDropButton()
     {
-        Item droppedItem = Inventory.instance.RemoveItem(index);
+        Item droppedItem = WandInventory.instance.RemoveItem(index);
         Vector3 dropPosition = player.transform.position + player.transform.forward;
         Instantiate(droppedItem.itemPrefab, dropPosition, Quaternion.identity);
     }
 
     public void OnSlotButton()
     {
-        if (WandInventory.instance.itemBeingMoved != null)
+        if (Inventory.instance.itemBeingMoved != null)
         {
-            Item item = WandInventory.instance.GetItem(WandInventory.instance.itemBeingMovedIndex);
-            bool happened = Inventory.instance.AddItem(item);
+            Item item = Inventory.instance.GetItem(Inventory.instance.itemBeingMovedIndex);
+            bool happened = WandInventory.instance.AddItem(item);
             if (happened)
-                WandInventory.instance.RemoveItem(WandInventory.instance.itemBeingMovedIndex);
+                Inventory.instance.RemoveItem(Inventory.instance.itemBeingMovedIndex);
         }
         else
         {
-            Inventory.instance.MoveItem(index);
+            WandInventory.instance.MoveItem(index);
         }
     }
 }
