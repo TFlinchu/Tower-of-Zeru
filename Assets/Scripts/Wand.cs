@@ -7,6 +7,7 @@ public class Wand : MonoBehaviour
     public GameObject ballPrefab;
     public float speed = 10f; // Speed of the ball
     public float attackDelay = 0.5f; // Delay between attacks in seconds
+    public float resetWandDelay = 1f; // Delay between attacks in seconds
     private bool canAttack = true; // If the player can attack
     private Coroutine shootingCoroutine; // Reference to the shooting coroutine
 
@@ -51,7 +52,7 @@ public class Wand : MonoBehaviour
             {
                 Debug.Log("current slot: " + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
                 currentSlot = 0;
-                yield return new WaitForSeconds(attackDelay); // should be changed to wand cooldown
+                yield return new WaitForSeconds(resetWandDelay);
             } else {
                 yield return StartCoroutine(Shoot());
             }
@@ -61,6 +62,11 @@ public class Wand : MonoBehaviour
         }
 
         Debug.Log("Shooting " + item.name);
+
+        if (item.isModifier)
+        {
+            Debug.Log("Modifier: " + item.name);
+        }
 
         // setting shoot direction
         Vector3 shootDirection;
