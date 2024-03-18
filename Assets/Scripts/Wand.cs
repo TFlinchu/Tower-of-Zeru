@@ -10,6 +10,8 @@ public class Wand : MonoBehaviour
     private bool canAttack = true; // If the player can attack
     private Coroutine shootingCoroutine; // Reference to the shooting coroutine
 
+    int currentSlot = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -36,10 +38,25 @@ public class Wand : MonoBehaviour
         attackCooldown();
 
         // Get the item in the first slot of the inventory
-        Item item = WandInventory.instance.GetItem(0);
+        Item item = WandInventory.instance.GetItem(currentSlot);
         if (item == null)
         {
-            Debug.Log("No item in the first slot.");
+            // Debug.Log("No item in the first slot.");
+            // yield break;
+
+            Debug.Log("slot: " + currentSlot + " was empty. Moving to next slot.");
+            currentSlot++;
+
+            if (currentSlot >= WandInventory.instance.space)
+            {
+                Debug.Log("current slot: " + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
+                currentSlot = 0;
+                yield return new WaitForSeconds(attackDelay); // should be changed to wand cooldown
+            } else {
+                yield return StartCoroutine(Shoot());
+            }
+
+            shootingCoroutine = null;
             yield break;
         }
 
@@ -61,9 +78,22 @@ public class Wand : MonoBehaviour
         // Destroy the ball after 1 second
         Destroy(ball, 1f);
 
-        yield return new WaitForSeconds(attackDelay);
+        currentSlot++;
+
+        if (currentSlot >= WandInventory.instance.space)
+        {
+            Debug.Log("current slot:" + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
+            currentSlot = 0;
+            yield return new WaitForSeconds(attackDelay); // should be changed to wand cooldown
+        }
+        else
+        {
+            yield return new WaitForSeconds(attackDelay);
+        }
 
         shootingCoroutine = null;
+
+
     }
 
     private void attackCooldown()
