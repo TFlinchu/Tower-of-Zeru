@@ -53,7 +53,9 @@ public class Wand : MonoBehaviour
                 Debug.Log("current slot: " + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
                 currentSlot = 0;
                 yield return new WaitForSeconds(resetWandDelay);
-            } else {
+            }
+            else
+            {
                 yield return StartCoroutine(Shoot());
             }
 
@@ -66,23 +68,30 @@ public class Wand : MonoBehaviour
         if (item.isModifier)
         {
             Debug.Log("Modifier: " + item.name);
+            currentSlot++;
+            yield return StartCoroutine(Shoot());
+            shootingCoroutine = null;
+            yield break;
         }
+        else
+        {
 
-        // setting shoot direction
-        Vector3 shootDirection;
-        shootDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        shootDirection.z = 0.0f;
+            // setting shoot direction
+            Vector3 shootDirection;
+            shootDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            shootDirection.z = 0.0f;
 
-        // Normalize the shoot direction
-        shootDirection.Normalize();
+            // Normalize the shoot direction
+            shootDirection.Normalize();
 
-        // Create and shoot the ball
-        GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
-        ballRigidbody.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+            // Create and shoot the ball
+            GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+            Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
+            ballRigidbody.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
 
-        // Destroy the ball after 1 second
-        Destroy(ball, 1f);
+            // Destroy the ball after 1 second
+            Destroy(ball, 1f);
+        }
 
         currentSlot++;
 
@@ -112,4 +121,5 @@ public class Wand : MonoBehaviour
     {
         canAttack = true;
     }
+    
 }
