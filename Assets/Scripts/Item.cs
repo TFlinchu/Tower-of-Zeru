@@ -10,4 +10,7 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public GameObject itemPrefab = null;
     public bool isModifier = false;
+    public enum ModifierType { None, Damage, Speed }
+    public ModifierType modifierType = ModifierType.None;
+    public float modifierValue = 0f;
 }
