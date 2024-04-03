@@ -8,7 +8,6 @@ public class Wand : MonoBehaviour
 {
     public GameObject ballPrefab;
     public float baseSpeed = 10f; // Speed of the ball
-    public float speed = 10f; // Speed of the ball
     public float attackDelay = 0.5f; // Delay between attacks in seconds
     public float resetWandDelay = 1f; // Delay between attacks in seconds
     private bool canAttack = true; // If the player can attack
@@ -42,6 +41,8 @@ public class Wand : MonoBehaviour
     private IEnumerator Shoot()
     {
         attackCooldown();
+
+        float speed = baseSpeed; // Speed of the ball
 
         // Get the item in the first slot of the inventory
         Item item = WandInventory.instance.GetItem(currentSlot);
@@ -88,15 +89,17 @@ public class Wand : MonoBehaviour
         }
         else
         {
+            float damage = item.damage; // Start with the item's base damage
+
             foreach (var (type, value) in currentModifiers)
             {
                 if (type == Item.ModifierType.Damage)
                 {
-                    // Apply damage modifier
+                    damage *= value;
                 }
                 else if (type == Item.ModifierType.Speed)
                 {
-                    speed = baseSpeed * value;
+                    speed *= value;
                 }
             }
 
@@ -111,6 +114,8 @@ public class Wand : MonoBehaviour
             // Create and shoot the ball
             GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
+            Attack attack = ball.GetComponent<Attack>();
+            attack.damage = damage; // Set the damage on the Attack component
             ballRigidbody.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
 
             // reset values

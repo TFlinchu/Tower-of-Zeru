@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public AttackSpellItem item;
+    public float damage; // Add this line
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Damage an enemy
@@ -13,7 +14,7 @@ public class Attack : MonoBehaviour
             Skeleton enemyScript = other.gameObject.GetComponent<Skeleton>();
             if (enemyScript != null)
             {
-                enemyScript.TakeDamage(item.damage);
+                enemyScript.TakeDamage((int)damage); // Use the damage field
             }
         }
     }
