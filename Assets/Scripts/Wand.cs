@@ -1,14 +1,21 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class Wand : MonoBehaviour
 {
     public GameObject ballPrefab;
-    public float speed = 10f; // Speed of the ball
+    public float baseSpeed = 10f; // Speed of the ball
     public float attackDelay = 0.5f; // Delay between attacks in seconds
+    public float resetWandDelay = 1f; // Delay between attacks in seconds
     private bool canAttack = true; // If the player can attack
     private Coroutine shootingCoroutine; // Reference to the shooting coroutine
+
+    int currentSlot = 0;
+
+    private List<(Item.ModifierType, float)> currentModifiers = new List<(Item.ModifierType, float)>();
 
     // Update is called once per frame
     void Update()
@@ -35,35 +42,106 @@ public class Wand : MonoBehaviour
     {
         attackCooldown();
 
+        float speed = baseSpeed; // Speed of the ball
+
         // Get the item in the first slot of the inventory
-        Item item = WandInventory.instance.GetItem(0);
+        Item item = WandInventory.instance.GetItem(currentSlot);
         if (item == null)
         {
-            Debug.Log("No item in the first slot.");
+            currentSlot++;
+
+            if (currentSlot >= WandInventory.instance.space)
+            {
+                Debug.Log("current slot: " + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
+                currentSlot = 0;
+                currentModifiers.Clear();
+                yield return new WaitForSeconds(resetWandDelay);
+            }
+            else
+            {
+                yield return StartCoroutine(Shoot());
+            }
+
+            shootingCoroutine = null;
             yield break;
         }
 
         Debug.Log("Shooting " + item.name);
 
-        // setting shoot direction
-        Vector3 shootDirection;
-        shootDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        shootDirection.z = 0.0f;
+        if (item.isModifier)
+        {
+            Debug.Log("Modifier: " + item.name);
+            currentSlot++;
+            if (currentSlot >= WandInventory.instance.space)
+            {
+                Debug.Log("current slot: " + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
+                currentSlot = 0;
+                currentModifiers.Clear();
+                yield return new WaitForSeconds(resetWandDelay);
+            }
+            else
+            {
+                currentModifiers.Add((item.modifierType, item.modifierValue));
+                yield return StartCoroutine(Shoot());
+            }
+            shootingCoroutine = null;
+            yield break;
+        }
+        else
+        {
+            float damage = item.damage; // Start with the item's base damage
 
-        // Normalize the shoot direction
-        shootDirection.Normalize();
+            foreach (var (type, value) in currentModifiers)
+            {
+                if (type == Item.ModifierType.Damage)
+                {
+                    damage *= value;
+                }
+                else if (type == Item.ModifierType.Speed)
+                {
+                    speed *= value;
+                }
+            }
 
-        // Create and shoot the ball
-        GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
-        ballRigidbody.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+            // setting shoot direction
+            Vector3 shootDirection;
+            shootDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            shootDirection.z = 0.0f;
 
-        // Destroy the ball after 1 second
-        Destroy(ball, 1f);
+            // Normalize the shoot direction
+            shootDirection.Normalize();
 
-        yield return new WaitForSeconds(attackDelay);
+            // Create and shoot the ball
+            GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+            Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
+            Attack attack = ball.GetComponent<Attack>();
+            attack.damage = damage; // Set the damage on the Attack component
+            ballRigidbody.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+
+            // reset values
+            currentModifiers.Clear();
+            speed = baseSpeed;
+
+            // Destroy the ball after 1 second
+            Destroy(ball, 1f);
+        }
+
+        currentSlot++;
+
+        if (currentSlot >= WandInventory.instance.space)
+        {
+            Debug.Log("current slot:" + currentSlot + " No more slots to shoot from. Resetting to slot 0.");
+            currentSlot = 0;
+            yield return new WaitForSeconds(attackDelay); // should be changed to wand cooldown
+        }
+        else
+        {
+            yield return new WaitForSeconds(attackDelay);
+        }
 
         shootingCoroutine = null;
+
+
     }
 
     private void attackCooldown()
@@ -76,4 +154,5 @@ public class Wand : MonoBehaviour
     {
         canAttack = true;
     }
+
 }

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fb8179d12600e44c8e15cdf0ffd06b2, type: 3}
-  m_Name: Magic Ball
+  m_Name: Speed Modifier
   m_EditorClassIdentifier: 
-  itemName: Magic Ball
-  icon: {fileID: -1855579864, guid: 2521eed80436b394b9b06738715f7242, type: 3}
-  itemPrefab: {fileID: 7315941594754614380, guid: bcdc09238ef6750499235d41ee661302, type: 3}
-  damage: 20
-  isModifier: 0
-  modifierType: 0
-  modifierValue: 0
+  itemName: item
+  icon: {fileID: 1728752270, guid: 5833ede7b0fcb4a479e91b8d06084e1f, type: 3}
+  itemPrefab: {fileID: 7315941594754614380, guid: 870616f7759a46d4ca458e908d058133, type: 3}
+  damage: 0
+  isModifier: 1
+  modifierType: 2
+  modifierValue: 2
