@@ -6,27 +6,18 @@ using UnityEngine.SceneManagement;
 public class EnterDoor : MonoBehaviour
 {
     private bool enterAllowed;
-    private string sceneToLoad;
+    public string sceneToLoad;
+    public Vector2 playerPosition;
+    public VectorValue playerStorage;
    
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
-        if (collider.tag == "Player" && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarterRoom")) 
+        if (collider.tag == "Player") 
         {
-            sceneToLoad = "Store";
+            //SceneManager.LoadScene(sceneToLoad);
             enterAllowed = true;
         }
-        else if (collider.tag == "Player" && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Store")) 
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-            
-        }
-
-        // else if (collision.GetComponent<LevelDoor>())
-        // {
-        //     sceneToLoad = "Room1";
-        //     enterAllowed = true;
-        // }
     }
     
     private void OnTriggerExit2D(Collider2D collider) 
@@ -41,8 +32,9 @@ public class EnterDoor : MonoBehaviour
     private void Update()
     {
         if (enterAllowed && Input.GetKey(KeyCode.E)) 
-        if (Input.GetKey(KeyCode.E)) 
+        //if (Input.GetKey(KeyCode.E)) 
         {
+            playerStorage.initialValue = playerPosition;
             SceneManager.LoadScene(sceneToLoad);
         }
     }

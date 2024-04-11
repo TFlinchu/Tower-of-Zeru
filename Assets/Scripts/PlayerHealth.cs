@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    public int currentHealth;
+    public static int currentHealth = 100;
     public Animator animator;
     public Rigidbody2D rb;
     private Healthbar healthbar;
@@ -13,7 +13,8 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        // currentHealth = maxHealth;
+        GameData.healthKeep = currentHealth;
         GameObject healthBarFillingObject = GameObject.Find("Canvas/Healthbar/HealthBar Filling");
         if (healthBarFillingObject != null)
         {
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogError("HealthBar Filling object not found in the scene.");
         }
+        healthbar.healthData();
     }
 
     public void TakeDamage(int amount)

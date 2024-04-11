@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 5370968578215918899, guid: 06e525490a877d941893cb57f5faf5d0, type: 3}
-  speed: 10
+  baseSpeed: 10
   attackDelay: 0.5
+  resetWandDelay: 1
 --- !u!1 &1332259671468571082
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1147879016547157194}
+  startingPostion: {fileID: 11400000, guid: b5ffd8e12fd4b494b867eaaeb8e31daa, type: 2}
 --- !u!95 &1147879016547157194
 Animator:
   serializedVersion: 5
