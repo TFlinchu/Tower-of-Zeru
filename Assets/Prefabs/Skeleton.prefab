@@ -270,6 +270,10 @@ MonoBehaviour:
   speed: 2
   hp: 100
   hurtbox: {fileID: 8442634657837752890}
+  spell1Prefab: {fileID: 7315941594754614380, guid: bcdc09238ef6750499235d41ee661302, type: 3}
+  spell2Prefab: {fileID: 7315941594754614380, guid: 9792d66001ea0064bbc6b93fa7423944, type: 3}
+  spell3Prefab: {fileID: 7315941594754614380, guid: 870616f7759a46d4ca458e908d058133, type: 3}
+  spell4Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
 --- !u!95 &2672182974202714648
 Animator:
   serializedVersion: 5

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Skeleton : MonoBehaviour
@@ -14,8 +15,35 @@ public class Skeleton : MonoBehaviour
     public GameObject hurtbox;
     private bool isAttacking = false;
 
-    private void Start()
+    public GameObject spell1Prefab;
+    public GameObject spell2Prefab;
+    public GameObject spell3Prefab;
+    public GameObject spell4Prefab;
+
+
+    public struct SpellDrop
     {
+        public GameObject spellPrefab;
+        public float dropRate;
+
+        public SpellDrop(GameObject spellPrefab, float dropRate)
+        {
+            this.spellPrefab = spellPrefab;
+            this.dropRate = dropRate;
+        }
+    }
+
+    // Create a list to hold the spells and their drop rates
+    public List<SpellDrop> spellDrops = new List<SpellDrop>();
+
+    // Populate the list with your spells and their drop rates
+    // Do this in the Start() method or in the Unity editor
+    void Start()
+    {
+        spellDrops.Add(new SpellDrop(spell1Prefab, 0.75f));
+        spellDrops.Add(new SpellDrop(spell2Prefab, 0.75f));
+        spellDrops.Add(new SpellDrop(spell3Prefab, 0.25f));
+        spellDrops.Add(new SpellDrop(spell4Prefab, 0.25f));
         rb = GetComponent<Rigidbody2D>();
 
         // Get the Animator component on the child GameObject
@@ -160,6 +188,27 @@ public class Skeleton : MonoBehaviour
             if (!(component is Renderer) && !(component is Animator))
             {
                 if (component is Behaviour behaviour) behaviour.enabled = false;
+            }
+        }
+        // Determine if a spell should be dropped
+        if (Random.value < 0.5f)
+        {
+            // Determine which spell should be dropped
+            float totalDropRate = spellDrops.Sum(spellDrop => spellDrop.dropRate);
+            float randomDrop = Random.value * totalDropRate;
+
+            foreach (var spellDrop in spellDrops)
+            {
+                if (randomDrop < spellDrop.dropRate)
+                {
+                    // Drop the spell
+                    Instantiate(spellDrop.spellPrefab, transform.position, Quaternion.identity);
+                    break;
+                }
+                else
+                {
+                    randomDrop -= spellDrop.dropRate;
+                }
             }
         }
     }
