@@ -9,7 +9,16 @@ public class Inventory : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        //instance = this;
+        if (instance != null) 
+        {
+            Destroy(gameObject);
+        }
+        else 
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     // will be used to update inventory UI

@@ -19,7 +19,6 @@ public class Healthbar : MonoBehaviour
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
         healthText.text = $"{maxHealth}/{healthSlider.maxValue}";
-        //healthText.text = $"{GameData.healthKeep.ToString()}/{healthSlider.maxValue}";
     }
 
     public void SetHealth(int health)
@@ -27,6 +26,5 @@ public class Healthbar : MonoBehaviour
 
         healthSlider.value = health;
         healthText.text = $"{health}/{healthSlider.maxValue}";
-        //GameData.healthKeep = health;
     }
 }
