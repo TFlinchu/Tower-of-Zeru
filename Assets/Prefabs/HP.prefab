@@ -513,7 +513,6 @@ GameObject:
   - component: {fileID: 8274610230092622843}
   - component: {fileID: 2114480603312996734}
   - component: {fileID: 355930401611481990}
-  - component: {fileID: 7711833679123132300}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -604,19 +603,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7711833679123132300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491274681503604904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e18e51f346ea0c4182f72add7f05a6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupTextObject: {fileID: 0}
 --- !u!1 &6661932602845179302
 GameObject:
   m_ObjectHideFlags: 0
