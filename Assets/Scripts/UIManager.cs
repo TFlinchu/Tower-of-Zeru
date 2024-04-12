@@ -13,13 +13,16 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (instance != null) 
         {
-            Debug.LogWarning("More than one instance of UIManager found!");
-            return;
+            Destroy(gameObject);
         }
-        instance = this;
-        pickupText = pickupTextObject.GetComponent<TMP_Text>();
+        else 
+        {
+            instance = this;
+            pickupText = pickupTextObject.GetComponent<TMP_Text>();
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void ShowPickupText(string itemName)

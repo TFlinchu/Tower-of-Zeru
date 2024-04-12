@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // currentHealth = maxHealth;
         GameData.healthKeep = currentHealth;
-        GameObject healthBarFillingObject = GameObject.Find("Canvas/Healthbar/HealthBar Filling");
+        GameObject healthBarFillingObject = GameObject.Find("HP/Healthbar/HealthBar Filling");
         if (healthBarFillingObject != null)
         {
             healthbar = healthBarFillingObject.GetComponent<Healthbar>();
@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        animator.SetTrigger("Death");
+            animator.SetTrigger("Death");
     }
     // Update is called once per frame
     void Update()
