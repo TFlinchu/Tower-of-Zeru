@@ -168,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 99586656, guid: 95689aa8f29204447a8e7a46171e2411, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -250,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3, y: 1}
   m_EdgeRadius: 0.5
 --- !u!114 &5387408463838382333
 MonoBehaviour:
@@ -267,8 +267,8 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 2672182974202714648}
-  speed: 2
-  hp: 100
+  speed: 3
+  hp: 1000
   hurtbox: {fileID: 8442634657837752890}
 --- !u!95 &2672182974202714648
 Animator:
@@ -334,5 +334,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 0.5, y: 0.7}
   m_EdgeRadius: 0
