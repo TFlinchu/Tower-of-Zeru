@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -53,7 +54,14 @@ public class PlayerHealth : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("Death");
+        Invoke("LoadScene", 2f); // Call LoadScene after 2 seconds
     }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(1); // Load scene 0
+    }
+
     // Update is called once per frame
     void Update()
     {
