@@ -331,7 +331,15 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 6099895264470318004, guid: f5eae646d327da44b88a98a745672a72, type: 3}
+      propertyPath: roomNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099895264470318004, guid: f5eae646d327da44b88a98a745672a72, type: 3}
       propertyPath: numOfEnemies
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099895264470318004, guid: f5eae646d327da44b88a98a745672a72, type: 3}
+      propertyPath: totalEnemies
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7473257700029376342, guid: f5eae646d327da44b88a98a745672a72, type: 3}

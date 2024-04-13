@@ -10,29 +10,29 @@ public class SpawnManager : MonoBehaviour
     public int enemiesKilled;
     float spawnRate = 5;
     float spawnEnemy = 1;
+    public int roomNumber;
     // public EnterDoor test;
     // Start is called before the first frame update
     void Start()
     {
-        totalEnemies = numOfEnemies;
-        //test.enterAllowed = false;
+        if (!GameManager.instance.IsRoomCleared(roomNumber))
+        {
+            numOfEnemies = totalEnemies;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         spawnEnemy -= Time.deltaTime;
-        if (spawnEnemy <= 0 && numOfEnemies > 0) {
+        if (spawnEnemy <= 0 && numOfEnemies > 0)
+        {
             spawnEnemy = spawnRate;
             spawnRate *= 0.9f;
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             numOfEnemies--;
         }
-        // if (numOfEnemies == 0) {
-        //     test.enterAllowed = false;
-        // }
 
-        
     }
 
     public void EnemyKilled()
