@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1147879016547157194}
+  startingPostion: {fileID: 11400000, guid: b5ffd8e12fd4b494b867eaaeb8e31daa, type: 2}
 --- !u!95 &1147879016547157194
 Animator:
   serializedVersion: 5

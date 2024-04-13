@@ -5,31 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class EnterDoor : MonoBehaviour
 {
-    private bool enterAllowed;
-    private string sceneToLoad;
-   
+    public bool enterAllowed;
+    public string sceneToLoad;
+    public Vector2 playerPosition;
+    public VectorValue playerStorage;
+    public SpawnManager test;
+    bool canEnter;
 
-    private void OnTriggerEnter2D(Collider2D collider) 
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player" && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarterRoom")) 
+        if (collider.tag == "Player" && GameManager.instance.IsRoomCleared(test.roomNumber))
         {
-            sceneToLoad = "Store";
+            //SceneManager.LoadScene(sceneToLoad);
             enterAllowed = true;
         }
-        else if (collider.tag == "Player" && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Store")) 
+        if (test.totalEnemies > test.enemiesKilled && !GameManager.instance.IsRoomCleared(test.roomNumber))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-            
+            enterAllowed = false;
+            Debug.Log("Door locked until conditions met");
         }
-
-        // else if (collision.GetComponent<LevelDoor>())
-        // {
-        //     sceneToLoad = "Room1";
-        //     enterAllowed = true;
-        // }
+        Debug.Log(GameManager.instance.IsRoomCleared(test.roomNumber));
     }
-    
-    private void OnTriggerExit2D(Collider2D collider) 
+
+    private void OnTriggerExit2D(Collider2D collider)
     {
         // if (collider.GetComponent<StoreDoor>() || collision.GetComponent<LevelDoor>()) 
         if (collider.tag == "Player")
@@ -40,10 +38,23 @@ public class EnterDoor : MonoBehaviour
     // // Update is called once per frame
     private void Update()
     {
-        if (enterAllowed && Input.GetKey(KeyCode.E)) 
-        if (Input.GetKey(KeyCode.E)) 
+        if (test.totalEnemies <= test.enemiesKilled)
         {
-            SceneManager.LoadScene(sceneToLoad);
+            GameManager.instance.ClearRoom(test.roomNumber);
         }
+        if (GameManager.instance.IsRoomCleared(test.roomNumber))
+        {
+            canEnter = true;
+        } else
+        {
+            canEnter = false;
+        }
+        if (Input.GetKey(KeyCode.E) && enterAllowed && canEnter)
+        {
+            playerStorage.initialValue = playerPosition;
+            SceneManager.LoadScene(sceneToLoad);
+            Debug.Log("All conditions met");
+        }
+        //Debug.Log("there are " + test.numOfEnemies + " enemies");   
     }
 }

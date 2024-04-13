@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     bool isfacingRight = true;
     public Animator animator;
+    public VectorValue startingPostion;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.position = startingPostion.initialValue;
     }
 
     // Update is called once per frame

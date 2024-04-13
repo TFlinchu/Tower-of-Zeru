@@ -19,6 +19,7 @@ public class InventorySlot : MonoBehaviour
     public void AddItem(Item newItem)
     {
         item = newItem;
+        //GameData.itemData = item;
 
         icon.sprite = item.icon;
         icon.enabled = true;
@@ -33,6 +34,7 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         item = null;
+        //GameData.itemData = null;
 
         icon.sprite = null;
         icon.enabled = false;

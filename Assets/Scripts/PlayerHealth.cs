@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    public int currentHealth;
+    public static int currentHealth = 100;
     public Animator animator;
     public Rigidbody2D rb;
     private Healthbar healthbar;
@@ -17,8 +17,9 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
-        GameObject healthBarFillingObject = GameObject.Find("Canvas/Healthbar/HealthBar Filling");
+        // currentHealth = maxHealth;
+        GameData.healthKeep = currentHealth;
+        GameObject healthBarFillingObject = GameObject.Find("HP/Healthbar/HealthBar Filling");
         if (healthBarFillingObject != null)
         {
             healthbar = healthBarFillingObject.GetComponent<Healthbar>();
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogError("HealthBar Filling object not found in the scene.");
         }
+        healthbar.healthData();
     }
 
     public void TakeDamage(int amount)
