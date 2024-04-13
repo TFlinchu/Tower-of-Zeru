@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 5370968578215918899, guid: 06e525490a877d941893cb57f5faf5d0, type: 3}
-  speed: 10
+  baseSpeed: 10
   attackDelay: 0.5
+  resetWandDelay: 1
 --- !u!1 &1332259671468571082
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +268,7 @@ MonoBehaviour:
   currentHealth: 0
   animator: {fileID: 1147879016547157194}
   rb: {fileID: 8614186606012182541}
+  defaultItem: {fileID: 11400000, guid: 294de1bd0012f7d41901ffb96236a3d3, type: 2}
 --- !u!61 &3392728829404165219
 BoxCollider2D:
   m_ObjectHideFlags: 0
