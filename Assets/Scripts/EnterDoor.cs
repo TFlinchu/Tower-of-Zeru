@@ -19,13 +19,13 @@ public class EnterDoor : MonoBehaviour
             enterAllowed = true;
             Debug.Log("Player is in " + SceneManager.GetActiveScene());
         }
-        else if (collider.tag == "Player" && test.numOfEnemies == 0) 
+        else if (collider.tag == "Player" && test.totalEnemies <= test.enemiesKilled) 
         {
             //SceneManager.LoadScene(sceneToLoad);
             enterAllowed = true;
             Debug.Log("Player killed all enemies");
         }
-        if (test.numOfEnemies > 0) {
+        if (test.totalEnemies > test.enemiesKilled) {
             enterAllowed = false;
             Debug.Log("Door locked until conditions met");
         }
@@ -42,7 +42,7 @@ public class EnterDoor : MonoBehaviour
     // // Update is called once per frame
     private void Update()
     {
-        if (enterAllowed && Input.GetKey(KeyCode.E) && test.numOfEnemies == 0)
+        if (enterAllowed && Input.GetKey(KeyCode.E) && test.totalEnemies <= test.enemiesKilled)
         //if (Input.GetKey(KeyCode.E)) 
         {
             playerStorage.initialValue = playerPosition;

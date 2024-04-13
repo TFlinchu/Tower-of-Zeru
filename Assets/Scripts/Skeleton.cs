@@ -162,5 +162,8 @@ public class Skeleton : MonoBehaviour
                 if (component is Behaviour behaviour) behaviour.enabled = false;
             }
         }
+
+        // Access the SpawnManager instance and call the EnemyKilled() method
+        FindObjectOfType<SpawnManager>().EnemyKilled();
     }
 }

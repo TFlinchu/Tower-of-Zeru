@@ -6,12 +6,15 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public int numOfEnemies;
+    public int totalEnemies;
+    public int enemiesKilled;
     float spawnRate = 5;
     float spawnEnemy = 1;
     // public EnterDoor test;
     // Start is called before the first frame update
     void Start()
     {
+        totalEnemies = numOfEnemies;
         //test.enterAllowed = false;
     }
 
@@ -30,5 +33,10 @@ public class SpawnManager : MonoBehaviour
         // }
 
         
+    }
+
+    public void EnemyKilled()
+    {
+        enemiesKilled++;
     }
 }
