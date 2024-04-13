@@ -8,12 +8,12 @@ public class Skeleton : MonoBehaviour
     public Transform target;
     public Rigidbody2D rb;
     public Animator animator;
-    private bool isStopped = false;
+    protected bool isStopped;
+    protected bool isAttacking;
     public float speed = 2f;
     public float hp = 100f;
     private Coroutine attackCoroutine;
     public GameObject hurtbox;
-    private bool isAttacking = false;
 
     public GameObject spell1Prefab;
     public GameObject spell2Prefab;
@@ -107,7 +107,7 @@ public class Skeleton : MonoBehaviour
     }
 
     // Attack repeatedly
-    private IEnumerator AttackRepeatedly()
+    protected virtual IEnumerator AttackRepeatedly()
     {
         // Delay between attacks
         float attackDelay = 1f;

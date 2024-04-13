@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SkeletonAttack : MonoBehaviour
 {
+
+    public int damage = 10;
     void OnTriggerEnter2D(Collider2D other)
     {
         // Damage the player
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerHealth>().TakeDamage(10);
+            other.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 }
