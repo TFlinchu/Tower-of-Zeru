@@ -250,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3, y: 1}
   m_EdgeRadius: 0.5
 --- !u!114 &5387408463838382333
 MonoBehaviour:
@@ -267,9 +267,13 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 2672182974202714648}
-  speed: 2
-  hp: 100
+  speed: 3
+  hp: 1000
   hurtbox: {fileID: 8442634657837752890}
+  spell1Prefab: {fileID: 7315941594754614380, guid: bcdc09238ef6750499235d41ee661302, type: 3}
+  spell2Prefab: {fileID: 7315941594754614380, guid: 9792d66001ea0064bbc6b93fa7423944, type: 3}
+  spell3Prefab: {fileID: 7315941594754614380, guid: 870616f7759a46d4ca458e908d058133, type: 3}
+  spell4Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
 --- !u!95 &2672182974202714648
 Animator:
   serializedVersion: 5
@@ -334,5 +338,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 0.5, y: 0.7}
   m_EdgeRadius: 0

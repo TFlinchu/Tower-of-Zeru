@@ -269,6 +269,7 @@ MonoBehaviour:
   currentHealth: 0
   animator: {fileID: 1147879016547157194}
   rb: {fileID: 8614186606012182541}
+  defaultItem: {fileID: 11400000, guid: 294de1bd0012f7d41901ffb96236a3d3, type: 2}
 --- !u!61 &3392728829404165219
 BoxCollider2D:
   m_ObjectHideFlags: 0

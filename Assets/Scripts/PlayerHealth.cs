@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     private Healthbar healthbar;
+    public static bool isFirstLoad = true;
+    public Item defaultItem;
 
     // Start is called before the first frame update
     void Start()
@@ -61,12 +64,17 @@ public class PlayerHealth : MonoBehaviour
 
     void LoadScene()
     {
-        SceneManager.LoadScene(1); // Load scene 0
+        isFirstLoad = true;
+        SceneManager.LoadScene(1); // Load scene 1
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isFirstLoad)
+        {
+            Inventory.instance.AddItem(defaultItem);
+            isFirstLoad = false;
+        }
     }
 }
