@@ -15,8 +15,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip storeSound;
     public AudioClip doorSound2;
-
     public AudioClip winSound;
+    public AudioClip skeletonDeath;
+    public AudioClip skeletonDamage;
+    public AudioClip skeletonDamage2;
+    public AudioClip skeletonDamage3;
+    public AudioClip playerDamage;
+    public AudioClip itemSound;
+    public AudioClip inventorySound;
+
+
 
     public static AudioManager instance;
 
@@ -44,5 +52,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip) {
         SFXSource.PlayOneShot(clip);
     }
+
 
 }

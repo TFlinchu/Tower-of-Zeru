@@ -30,6 +30,7 @@ public class EnterDoor : MonoBehaviour
         {
             enterAllowed = false;
             Debug.Log("Door locked until conditions met");
+            //audioManager.PlaySFX(audioManager.doorSound);
         }
         Debug.Log(GameManager.instance.IsRoomCleared(test.roomNumber));
     }

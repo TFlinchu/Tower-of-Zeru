@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
         if (currentScene ==  SceneManager.GetSceneByName ("Menu")) {
             audioManager.PlayMenuMusic();
         }
+       // menuMusicManager.PlayMenuMusic();
         // else if (currentScene == SceneManager.GetSceneByName ("StarterRoom")) {
         //     audioManager.
         // }

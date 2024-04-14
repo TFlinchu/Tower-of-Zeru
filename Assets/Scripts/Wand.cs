@@ -17,6 +17,13 @@ public class Wand : MonoBehaviour
 
     private List<(Item.ModifierType, float)> currentModifiers = new List<(Item.ModifierType, float)>();
 
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -113,6 +120,9 @@ public class Wand : MonoBehaviour
 
             // Create and shoot the ball
             GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+
+            audioManager.PlaySFX(audioManager.spellSound);
+
             Rigidbody2D ballRigidbody = ball.GetComponent<Rigidbody2D>();
             Attack attack = ball.GetComponent<Attack>();
             attack.damage = damage; // Set the damage on the Attack component

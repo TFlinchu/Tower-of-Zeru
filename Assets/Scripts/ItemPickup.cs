@@ -7,6 +7,11 @@ public class ItemPickup : MonoBehaviour
     public Item item;
 
     private bool isPlayerinTrigger = false;
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
 
 public void OnTriggerEnter2D(Collider2D other)
@@ -31,6 +36,7 @@ public void OnTriggerExit2D(Collider2D other)
     {
         if (isPlayerinTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            audioManager.PlaySFX(audioManager.itemSound);
             PickUp();
         }
     }

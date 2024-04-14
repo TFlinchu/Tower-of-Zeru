@@ -55,6 +55,12 @@ MonoBehaviour:
   storeSound: {fileID: 8300000, guid: 57d7106ba7878014a8d943d1c7863c90, type: 3}
   doorSound2: {fileID: 8300000, guid: 3931d99a17787df4c8082b02dd3a84c1, type: 3}
   winSound: {fileID: 8300000, guid: 9bf43a715a129d04b8885042bd6cad03, type: 3}
+  skeletonDeath: {fileID: 8300000, guid: 89f92007ce0548147ba874c03718df8f, type: 3}
+  skeletonDamage: {fileID: 8300000, guid: 206f51586cba8404db8ae0f685025528, type: 3}
+  skeletonDamage2: {fileID: 0}
+  skeletonDamage3: {fileID: 8300000, guid: 2fd83e332f066374eb731e287345ed02, type: 3}
+  playerDamage: {fileID: 8300000, guid: b3e679c1e7bd495479404817a50c58b1, type: 3}
+  itemSound: {fileID: 8300000, guid: eaf941a72560d4344a0a7bd22b815735, type: 3}
 --- !u!1 &2813539183117989172
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,11 @@ public class Skeleton : MonoBehaviour
     public GameObject spell2Prefab;
     public GameObject spell3Prefab;
     public GameObject spell4Prefab;
+    AudioManager audioManager;
 
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public struct SpellDrop
     {
@@ -93,6 +97,7 @@ public class Skeleton : MonoBehaviour
             animator.SetBool("isMoving", false);
             // Start the attack coroutine when the player enters the range
             attackCoroutine = StartCoroutine(AttackRepeatedly());
+            audioManager.PlaySFX(audioManager.skeletonDamage3);
         }
     }
 
@@ -162,8 +167,10 @@ public class Skeleton : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        audioManager.PlaySFX(audioManager.skeletonDamage);
         if (hp <= 0)
         {
+            audioManager.PlaySFX(audioManager.skeletonDeath);
             Die();
         }
     }
@@ -206,6 +213,7 @@ public class Skeleton : MonoBehaviour
                 if (randomDrop < spellDrop.dropRate)
                 {
                     // Drop the spell
+                    audioManager.PlaySFX(audioManager.itemSound);
                     Instantiate(spellDrop.spellPrefab, transform.position, Quaternion.identity);
                     break;
                 }
