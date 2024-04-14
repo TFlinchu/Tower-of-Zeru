@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Skeleton : MonoBehaviour
 {
@@ -170,8 +171,15 @@ public class Skeleton : MonoBehaviour
         audioManager.PlaySFX(audioManager.skeletonDamage);
         if (hp <= 0)
         {
-            audioManager.PlaySFX(audioManager.skeletonDeath);
-            Die();
+            if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("BossRoom")) {
+                audioManager.PlaySFX(audioManager.skeletonDeath);
+                audioManager.PlaySFX(audioManager.winSound);
+                Die();
+            }
+            else {
+                audioManager.PlaySFX(audioManager.skeletonDeath);
+                Die();
+            }
         }
     }
 

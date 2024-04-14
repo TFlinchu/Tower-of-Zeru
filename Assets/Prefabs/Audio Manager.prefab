@@ -61,6 +61,9 @@ MonoBehaviour:
   skeletonDamage3: {fileID: 8300000, guid: 2fd83e332f066374eb731e287345ed02, type: 3}
   playerDamage: {fileID: 8300000, guid: b3e679c1e7bd495479404817a50c58b1, type: 3}
   itemSound: {fileID: 8300000, guid: eaf941a72560d4344a0a7bd22b815735, type: 3}
+  inventorySound: {fileID: 8300000, guid: b283f77c90f06d74f9eb4cedb2351473, type: 3}
+  storeMusic: {fileID: 8300000, guid: e5a4c249b83cf3b48a5dc5392bbe54ce, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 8a2f06f7a7656fc45a158a74f76346cb, type: 3}
 --- !u!1 &2813539183117989172
 GameObject:
   m_ObjectHideFlags: 0

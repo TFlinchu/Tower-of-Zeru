@@ -11,15 +11,7 @@ public class Menu : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Start() {
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene ==  SceneManager.GetSceneByName ("Menu")) {
-            audioManager.PlayMenuMusic();
-        }
-       // menuMusicManager.PlayMenuMusic();
-        // else if (currentScene == SceneManager.GetSceneByName ("StarterRoom")) {
-        //     audioManager.
-        // }
-        
+        audioManager.PlayMenuMusic();
     }
     public void startGame() {
         //SceneManager.LoadScene(1);

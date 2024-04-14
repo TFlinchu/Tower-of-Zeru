@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerDamage;
     public AudioClip itemSound;
     public AudioClip inventorySound;
+    public AudioClip storeMusic;
+    public AudioClip backgroundMusic;
 
 
 
@@ -45,7 +47,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayMenuMusic() {
-        musicSource.clip = menuMusic;
+        musicSource.clip = backgroundMusic;
         musicSource.Play();
     }
 
