@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Skeleton : MonoBehaviour
 {
@@ -19,7 +20,11 @@ public class Skeleton : MonoBehaviour
     public GameObject spell2Prefab;
     public GameObject spell3Prefab;
     public GameObject spell4Prefab;
+    AudioManager audioManager;
 
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public struct SpellDrop
     {
@@ -93,6 +98,7 @@ public class Skeleton : MonoBehaviour
             animator.SetBool("isMoving", false);
             // Start the attack coroutine when the player enters the range
             attackCoroutine = StartCoroutine(AttackRepeatedly());
+            audioManager.PlaySFX(audioManager.skeletonDamage3);
         }
     }
 
@@ -162,9 +168,18 @@ public class Skeleton : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        audioManager.PlaySFX(audioManager.skeletonDamage);
         if (hp <= 0)
         {
-            Die();
+            if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("BossRoom")) {
+                audioManager.PlaySFX(audioManager.skeletonDeath);
+                audioManager.PlaySFX(audioManager.winSound);
+                Die();
+            }
+            else {
+                audioManager.PlaySFX(audioManager.skeletonDeath);
+                Die();
+            }
         }
     }
 
@@ -183,6 +198,7 @@ public class Skeleton : MonoBehaviour
         animator.SetTrigger("Die");
 
         // Disable all components except for the Renderer
+        disableHurtbox();
         foreach (var component in GetComponents<Component>())
         {
             if (!(component is Renderer) && !(component is Animator))
@@ -206,6 +222,7 @@ public class Skeleton : MonoBehaviour
                 if (randomDrop < spellDrop.dropRate)
                 {
                     // Drop the spell
+                    audioManager.PlaySFX(audioManager.itemSound);
                     Instantiate(spellDrop.spellPrefab, transform.position, Quaternion.identity);
                     break;
                 }

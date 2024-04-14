@@ -7,6 +7,11 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryUI;
     Inventory inventory;
     InventorySlot[] slots;
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory"))
         {
+            audioManager.PlaySFX(audioManager.inventorySound);
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
     }

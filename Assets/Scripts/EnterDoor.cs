@@ -12,17 +12,25 @@ public class EnterDoor : MonoBehaviour
     public SpawnManager test;
     bool canEnter;
 
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player" && GameManager.instance.IsRoomCleared(test.roomNumber))
         {
             //SceneManager.LoadScene(sceneToLoad);
             enterAllowed = true;
+            //audioManager.PlaySFX(audioManager.doorSound);
         }
         if (test.totalEnemies > test.enemiesKilled && !GameManager.instance.IsRoomCleared(test.roomNumber))
         {
             enterAllowed = false;
             Debug.Log("Door locked until conditions met");
+            //audioManager.PlaySFX(audioManager.doorSound);
         }
         Debug.Log(GameManager.instance.IsRoomCleared(test.roomNumber));
     }
@@ -51,6 +59,7 @@ public class EnterDoor : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E) && enterAllowed && canEnter)
         {
+            audioManager.PlaySFX(audioManager.doorSound2);
             playerStorage.initialValue = playerPosition;
             SceneManager.LoadScene(sceneToLoad);
             Debug.Log("All conditions met");

@@ -13,6 +13,11 @@ public class PlayerHealth : MonoBehaviour
     private Healthbar healthbar;
     public static bool isFirstLoad = true;
     public Item defaultItem;
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        audioManager.PlaySFX(audioManager.playerDamage);
         healthbar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
