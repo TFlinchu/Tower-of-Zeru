@@ -500,6 +500,10 @@ MonoBehaviour:
   speed: 2
   hp: 500
   hurtbox: {fileID: 6857210700700628409}
+  spell1Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
+  spell2Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
+  spell3Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
+  spell4Prefab: {fileID: 7315941594754614380, guid: cd27ba93f107f0a408c13bd134f1ccea, type: 3}
   effectAnimator: {fileID: 1045313308296112117}
 --- !u!1 &6857210700700628409 stripped
 GameObject:

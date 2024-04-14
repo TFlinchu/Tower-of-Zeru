@@ -64,7 +64,21 @@ public class PlayerHealth : MonoBehaviour
 
     void LoadScene()
     {
+        GameObject inventory = GameObject.Find("Inventory");
+        GameObject gameManager = GameObject.Find("GameManager");
+
+        if (inventory != null)
+        {
+            Destroy(inventory);
+        }
+
+        if (gameManager != null)
+        {
+            Destroy(gameManager);
+        }
+
         isFirstLoad = true;
+        currentHealth = maxHealth;
         SceneManager.LoadScene(1); // Load scene 1
     }
 

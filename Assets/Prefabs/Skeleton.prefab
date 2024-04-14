@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5c086857e00b04b88671321d409f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &8603988768713595243
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 2672182974202714648}
   speed: 3
-  hp: 1000
+  hp: 100
   hurtbox: {fileID: 8442634657837752890}
   spell1Prefab: {fileID: 7315941594754614380, guid: bcdc09238ef6750499235d41ee661302, type: 3}
   spell2Prefab: {fileID: 7315941594754614380, guid: 9792d66001ea0064bbc6b93fa7423944, type: 3}
