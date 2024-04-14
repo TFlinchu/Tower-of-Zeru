@@ -198,6 +198,7 @@ public class Skeleton : MonoBehaviour
         animator.SetTrigger("Die");
 
         // Disable all components except for the Renderer
+        disableHurtbox();
         foreach (var component in GetComponents<Component>())
         {
             if (!(component is Renderer) && !(component is Animator))
