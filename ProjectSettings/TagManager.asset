@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Quit
   - Play
+  - Audio
   layers:
   - Default
   - TransparentFX

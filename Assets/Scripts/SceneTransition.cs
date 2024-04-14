@@ -9,6 +9,15 @@ public class SceneTransition : MonoBehaviour
     public string sceneToLoad;  //changed from private
     public Vector2 playerPosition;
     public VectorValue playerStorage;
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+    void Start() {
+        audioManager.PlaySFX(audioManager.storeSound);
+    }
 
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player") && !other.isTrigger) {
